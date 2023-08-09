@@ -1,0 +1,26 @@
+{
+  "name": "green-api",
+  "version": "1.0.0",
+  "description": "В рамках выполнения тестового задания требуется разработать механизм асинхронной обработки\r HTTP запросов и опубликовать исходники проекта на Github для дальнейшего анализа и проверки.\r Время на выполнения задания: 3 дня.",
+  "main": "publisher.js",
+  "scripts": {
+    "publish": "node src/publisher.js",
+    "consume": "node src/consumer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdulxaqDev/green-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdulxaqDev/green-api/issues"
+  },
+  "homepage": "https://github.com/AbdulxaqDev/green-api#readme",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.3.1"
+  }
+}
