@@ -1,10 +1,10 @@
 {
-  "name": "m2_service",
+  "name": "m1_service",
   "version": "1.0.0",
-  "description": "",
+  "description": "m1 service processes http request and directs requests to m2 service through rabbitmq",
   "main": "index.js",
   "scripts": {
-    "watch": "node index.js",
+    "start": "node index.js",
     "install": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
