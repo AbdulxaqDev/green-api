@@ -24,15 +24,15 @@ amqp.connect(AMQP_URL, (error0, connection) => {
         const { task } = JSON.parse(message.content.toString());
         const seconds = task.split(".").length; // to generate processing time
 
-        console.log(" [.] Got a new task '%s'", task);
+        console.log(" [M2] Got a new task '%s'", task);
 
         // Processing task and send to M1 Microservice
         const result = task.replaceAll(".", "#");
 
-        console.log(` [.] Start processing the task`);
+        console.log(` [M2] Start processing the task`);
 
         setTimeout(async () => {
-          console.log(` [.] Finish processing the task`);
+          console.log(` [M2] Finish processing the task`);
           console.log("\n ----------------------------\n");
           await channel.sendToQueue(
             message.properties.replyTo,

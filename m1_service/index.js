@@ -33,7 +33,7 @@ amqp.connect(AMQP_URL, (error0, connection) => {
           channel.consume(
             QUEUE,
             (msg) => {
-              console.log(" [.] Got the processed message '%s'", msg.content.toString());
+              console.log(" [M1] Got the processed message '%s'", msg.content.toString());
               console.log("\n ----------------------------\n");
             },
             {
@@ -46,7 +46,7 @@ amqp.connect(AMQP_URL, (error0, connection) => {
       app.post("/", (req, res) => {
         const { message } = req.body;
 
-        console.log(" [.] Got HTTP request, message: '%s'", message);
+        console.log(" [M1] Got HTTP request, message: '%s'", message);
 
         channel.sendToQueue(
           QUEUE,
@@ -56,9 +56,9 @@ amqp.connect(AMQP_URL, (error0, connection) => {
           }
         );
 
-        console.log(" [.] Sent the message to M2 microserver through RabbitMQ");
+        console.log(" [M1] Sent the message to M2 microserver through RabbitMQ");
 
-        res.send(" [.] Sent the message to M2 microserver through RabbitMQ");
+        res.send(" [M1] Sent the message to M2 microserver through RabbitMQ");
       });
     },
     { noAck: true, durable: false }
