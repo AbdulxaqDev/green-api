@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "m1": "npm start --prefix m1_service",
-    "m2": "npm run watch --prefix m2_service",
+    "m2": "npm start --prefix m2_service",
 
     "m1:install": "npm install --prefix m1_service",
     "m2:install": "npm install --prefix m2_service",
