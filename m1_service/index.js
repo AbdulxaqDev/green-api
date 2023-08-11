@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const amqp = require("amqplib/callback_api");
 require("dotenv").config();
 
@@ -19,6 +18,10 @@ amqp.connect(AMQP_URL, (error0, connection) => {
     (error1, channel) => {
       if (error1) throw error1;
 
+      channel.assertQueue(QUEUE, {
+        durable: false,
+      });
+
       // anonymous exclusive callback queue
       channel.assertQueue(
         "",
@@ -33,7 +36,10 @@ amqp.connect(AMQP_URL, (error0, connection) => {
           channel.consume(
             QUEUE,
             (msg) => {
-              console.log(" [M1] Got the processed message '%s'", msg.content.toString());
+              console.log(
+                " [M1] Got the processed message '%s'",
+                msg.content.toString()
+              );
               console.log("\n ----------------------------\n");
             },
             {
@@ -56,7 +62,9 @@ amqp.connect(AMQP_URL, (error0, connection) => {
           }
         );
 
-        console.log(" [M1] Sent the message to M2 microserver through RabbitMQ");
+        console.log(
+          " [M1] Sent the message to M2 microserver through RabbitMQ"
+        );
 
         res.send(" [M1] Sent the message to M2 microserver through RabbitMQ");
       });

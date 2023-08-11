@@ -1,0 +1,35 @@
+version: '3'
+services:
+  node1:
+    build: ./m1_service
+    command: ['npm', 'start']
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbitmq
+    environment:
+      - M1_PORT=3000 
+      - QUEUE=greenapi 
+      - AMQP_URL=amqp://username:password@rabbitmq:5672
+
+  node2:
+    build: ./m2_service
+    command: ['npm', 'start']
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    environment:
+      - QUEUE=greenapi 
+      - AMQP_URL=amqp://username:password@rabbitmq:5672
+
+  rabbitmq:
+    image: rabbitmq
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password

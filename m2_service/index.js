@@ -11,9 +11,8 @@ amqp.connect(AMQP_URL, (error0, connection) => {
   connection.createChannel((error1, channel) => {
     if (error1) throw error1;
 
-    channel.assertQueue("", {
+    channel.assertQueue(QUEUE, {
       durable: false,
-      exclusive: true,
     });
 
     console.log(`M2 microservice is waiting for task in ${QUEUE}\n`);
@@ -40,7 +39,7 @@ amqp.connect(AMQP_URL, (error0, connection) => {
           );
           // dequeuing
           channel.ack(message);
-        }, seconds*1000);
+        }, seconds * 1000);
       },
       { noAck: false }
     );
