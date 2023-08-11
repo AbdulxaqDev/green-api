@@ -92,7 +92,7 @@ And, the M2 is paused for a second for each dot. This is just a simulation of pr
 It can do image processing or pdf, any kind of processing.
 
 
-For the full explanation, watch this **[video](link)**
+<u>For the full explanation, watch this YouTube **[video](https://www.youtube.com/watch?v=vXXriaVNC0w)**</u>
 
 
 
